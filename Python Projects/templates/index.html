@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSP Solver</title>
+</head>
+<body>
+    <h1>Travelling Salesman Problem Solver</h1>
+    <form action="/" method="POST">
+        <label for="num_places">Number of places to visit:</label>
+        <input type="number" id="num_places" name="num_places" min="2" required><br><br>
+
+        {% for i in range(num_places) %}
+            <label for="place_{{ i }}">Place {{ i+1 }}:</label>
+            <input type="text" id="place_{{ i }}" name="place_{{ i }}" required><br><br>
+        {% endfor %}
+
+        <h3>Enter distances between places:</h3>
+        {% for i in range(num_places) %}
+            {% for j in range(i+1, num_places) %}
+                <label for="distance_{{ i }}_{{ j }}">Distance between {{ place_names[i] }} and {{ place_names[j] }}:</label>
+                <input type="number" id="distance_{{ i }}_{{ j }}" name="distance_{{ i }}_{{ j }}" min="0" required><br><br>
+            {% endfor %}
+        {% endfor %}
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
